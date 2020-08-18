@@ -12,15 +12,15 @@
 
 三、方法
 
-使用git config --global http.proxy "localhost:port"，设置代理。
+使用git config --global http.proxy localhost:port，设置代理。
 
 port是端口号，根据不同的vpn不一样，我这里使用的是lartern，端口是50321。
 
 四、操作
 
-执行 git config --global http.proxy "localhost:50321"
+执行 git config --global http.proxy localhost:50321
 
-五、设置&取消
+五、设置&取消 
 
 git config --global https.proxy http://127.0.0.1:1080
 
