@@ -37,6 +37,25 @@ $ export PATH=/path/to/depot_tools:$PATH
 export PATH="/Users/xxx/Documents/depot_tools:$PATH"
 ```
 
+### window[参考官网链接] 
+> 没有尝试
+
+## Checking out source
+To check out the source for DevTools frontend only, follow these steps:
+```bash 
+mkdir devtools
+cd devtools
+fetch devtools-frontend
+```
+
+## Build
+To build, follow these steps:
+```bash 
+cd devtools-frontend
+gn gen out/Default
+autoninja -C out/Default
+```
+
 > ```gn gen out/Default``` & ```autoninja -C out/Default``` 报错
 
 解决办法 ~/.zshrc 中新增配置
@@ -71,27 +90,6 @@ proxy_on
 gn gen out/Default
 autoninja -C out/Default
 ```
-
-
-### window[参考官网链接] 
-> 没有尝试
-
-## Checking out source
-To check out the source for DevTools frontend only, follow these steps:
-```bash 
-mkdir devtools
-cd devtools
-fetch devtools-frontend
-```
-
-## Build
-To build, follow these steps:
-```bash 
-cd devtools-frontend
-gn gen out/Default
-autoninja -C out/Default
-```
-
 
 ## 参考
 - https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
