@@ -22,7 +22,7 @@ port是端口号，根据不同的vpn不一样，我这里使用的是lartern，
 
 五、设置&取消 
 
-git config --global https.proxy http://127.0.0.1:1080
+git config --global http.proxy http://127.0.0.1:1080
 
 git config --global https.proxy https://127.0.0.1:1080
 
