@@ -114,7 +114,7 @@ export const page_get_Thunk = (data = {}) => (dispatch, getState) => {
     data
   }).then(res=>{
     // 更新数据
-    dispatch(page_get(params))
+    dispatch(page_get(res))
   })
 }
 ```
