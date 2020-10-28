@@ -1,5 +1,5 @@
 # ajax
-> ajax 实践小结
+> ajax 日常小结
 
 ## 业务直接使用 ajax
 - 如果直接用原生的也会统一封装一个函数。不会直接业务中重复 `xhr = new XMLHttpRequest()` 处理！
@@ -20,7 +20,7 @@ axios({
 ```js
 // 业务调用
 ajax({
-    uri:'',
+    uri:'page/get',
     data:{
         
     },
@@ -92,7 +92,43 @@ function ajax_callback(params){
 }
 ```
 
-## 函数化
+## 函数化/配置化
+- vuex/redux 中经常会将异步的ajax调用抽离到action中
+- 通过 props 获取函数调用 / 更新后的数据
+```js
+//actions
+export const PAGE_GET = 'PAGE_GET';
+
+export const page_get = (data = {}) => {
+  return {
+    type: PAGE_GET,
+    params: data
+  }
+
+}
+// 页面对应对应函数 更新数据，对应url & type 都配置化了。
+export const page_get_Thunk = (data = {}) => (dispatch, getState) => {
+  ajax({
+    url: Urls.page_get,
+    type:'get',
+    data
+  }).then(res=>{
+    // 更新数据
+    dispatch(page_get(params))
+  })
+}
+```
+- 非 vuex/redux 中
+```js
+// 页面对应对应函数 更新数据，对应url & type 都配置化了。
+export const page_get = (params = {}) => {
+  return ajax(Object.assign({
+            url: Urls.page_get,
+            type: 'get',
+            data: {}}, params))
+}
+
+```
 
 ## workbox 缓存 & 兼容性处理(扩展post/非浏览器环境)
 ```js
@@ -242,4 +278,87 @@ module.exports={
 }
 ```
 
-##  
+## 通用依赖处理
+- 业务层可以 不用重复处理这些通用的请求参数依赖
+- 如果涉及amd异步加载依赖，需要维护 ajax 队列。类似于业务层先调用了还没有初始化好的依赖模块，等待依赖初始化完成，再去执行队列中的函数
+
+```js
+
+exports.requireAjax = function (params = {}) {
+  //没有 依赖。返回true
+  if (!params._requireKey) {
+    return ajax(params);
+  }
+  
+  return Promise.all(params._requireKey.map(item=>this[item.key](item))).then(dataArr=>{
+    // 处理 通用数据 dataArr 到 params.data
+    params.data = Object.assign({},params.data,...dataArr);
+    return ajax(params);
+  },err=>{
+      // 涉及异步加载依赖模块时。等待依赖初始化完成，再去执行队列中的函数。 触发 resolve, reject 返回到业务层
+      return new Promise((resolve, reject)=>{
+         let _params = Object.assign({resolve, reject}, params); 
+         promiseAjaxQueue.push(_params); 
+      })
+  })
+}
+
+
+exports.userInfo = function (params = {}) {
+    return new Promise((resolve,reject)=>{
+      // true 强依赖 | false: 尝试获取
+      if(params.type){
+         resolve({user:{}})
+      }else{
+         resolve({user:{}})
+      }
+    })
+ 
+}
+```
+- 兼容 promise & callback & promiseAjaxQueue
+```js
+// promise & callback & promiseAjaxQueue
+function ajax_callback(params){ 
+    // 参数预处理    
+    let _type = params.type || params.method || 'get';
+ 
+    return axios(Object.assign({
+             method: _type,
+             url: params.url || params.uri
+         }, 
+        // 统一 get/ post 数据属性 
+        _type === 'get' ? {params: params.data} : {data: params.data}))
+        .then(res=>{
+            // 抹平不同后台系统的 数据属性差异
+            let code = res.code || res.status;
+            let data = res.result || res.data;
+            let msg = res.msg || res.message;
+            // 抹平不同 业务系统的成功状态码
+            if(code===100 || code==='100'){
+                 params.callback && params.callback(res,100,msg)
+                 if (params.resolve) {
+                    //处理 ajax 队列的请求
+                    params.resolve(res);
+                 } else {
+                    return res
+                 }
+            } else {
+                 params.callback && params.callback(res)
+                if(params.reject){
+                     params.reject(res)
+                }else{
+                    return Promise.reject(res)
+                }   
+               
+            }    
+        },err=>{
+            params.callback && params.callback(err)
+           if(params.reject){
+                params.reject(err)
+           }else{
+               return Promise.reject(err)
+           } 
+        })
+}
+```
