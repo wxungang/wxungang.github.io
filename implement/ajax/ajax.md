@@ -4,6 +4,7 @@
 ## 业务直接使用 ajax
 - 如果直接用原生的也会统一封装一个函数。不会直接业务中重复 `xhr = new XMLHttpRequest()` 处理！
 - 这里已 axios 库为例
+
 ```js
 // 业务调用
 axios({
@@ -17,6 +18,7 @@ axios({
 ```
 
 ## 抹平不同 业务系统
+
 ```js
 // 业务调用
 ajax({
@@ -95,6 +97,7 @@ function ajax_callback(params){
 ## 函数化/配置化
 - vuex/redux 中经常会将异步的ajax调用抽离到action中
 - 通过 props 获取函数调用 / 更新后的数据
+
 ```js
 //actions
 export const PAGE_GET = 'PAGE_GET';
@@ -118,7 +121,9 @@ export const page_get_Thunk = (data = {}) => (dispatch, getState) => {
   })
 }
 ```
+
 - 非 vuex/redux 中
+
 ```js
 // 页面对应对应函数 更新数据，对应url & type 都配置化了。
 export const page_get = (params = {}) => {
@@ -130,7 +135,8 @@ export const page_get = (params = {}) => {
 
 ```
 
-## workbox 缓存 & 兼容性处理(扩展post/非浏览器环境)
+## workbox 缓存 & 兼容性处理(扩展post/非web环境)
+
 ```js
 /**
  * 默认
@@ -168,7 +174,9 @@ function storage(params){
 }
 
 ```
+
 - 模拟 workbox 策略函数实现
+
 ```js
 /**
  *  获取 存储的 key 
@@ -227,7 +235,9 @@ cacheFirst: function (params, options) {
 
 }
 ```
+
 - 缓存配置
+
 ```js
 const strategies = {
     // 接口结构改变时更新 v时间
@@ -243,7 +253,9 @@ const strategies = {
     }
 };
 ```
+
 - workbox 打包配置
+
 ```js
 module.exports={
   // Other webpack config...
@@ -316,7 +328,9 @@ exports.userInfo = function (params = {}) {
  
 }
 ```
+
 - 兼容 promise & callback & promiseAjaxQueue
+
 ```js
 // promise & callback & promiseAjaxQueue
 function ajax_callback(params){ 
