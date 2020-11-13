@@ -1,9 +1,12 @@
 const _shortOut = require('./lodash-4.17.19/npm-package/_shortOut');
 const _overRest = require('./lodash-4.17.19/npm-package/_overRest');
+const _getNative = require('./lodash-4.17.19/npm-package/_getNative');
+const _baseSetToString = require('./lodash-4.17.19/npm-package/_baseSetToString');
 
 
 ((mod) => {
     console.log(`============test ${mod}===================`);
+    return;
 
     function func(a, b, c) {
         console.log(a, b, c)
@@ -21,6 +24,7 @@ const _overRest = require('./lodash-4.17.19/npm-package/_overRest');
 
 ((mod) => {
     console.log(`============test ${mod}===================`);
+    return;
 
     function func(...arg) {
         return arg
@@ -41,3 +45,35 @@ const _overRest = require('./lodash-4.17.19/npm-package/_overRest');
 
 
 })('_shortOut');
+
+
+((mod) => {
+    console.log(`============test ${mod}===================`);
+    return;
+
+    console.log(_getNative(Math, 'random'))
+
+    console.log(_getNative(Math, 'toString'))
+
+    console.log(_getNative({key: 1}, 'key'))
+
+
+})('_getNative');
+
+((mod) => {
+    console.log(`============test ${mod}===================`);
+    // return;
+
+    function func(...args) {
+        return args
+    }
+
+    console.log('func.toString => ', func.toString())
+
+    _baseSetToString(func, '这是定制的toString()')
+
+    console.log('func.toString => ', func.toString())
+
+
+})('_baseSetToString');
+
