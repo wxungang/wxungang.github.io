@@ -7,6 +7,6 @@
 - [事件轮询](implement/loop.md)
 - [单例&多例](implement/singleton.md)
 - [ajax请求](implement/ajax/ajax.md)
-
+- [项目通用配置](implement/config/config.md)
 
    
