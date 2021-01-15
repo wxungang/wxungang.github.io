@@ -10,13 +10,13 @@ class LikeButton extends React.Component {
 
   render() {
     if (this.state.liked) {
-      return 'You liked this.';
+      return 'You liked this.(class)';
     }
 
     return createElement(
       'button',
       { onClick: () => this.setState({ liked: true }) },
-      'Like'
+      'Like(class)'
     );
   }
 }
@@ -33,13 +33,13 @@ function reactButton() {
   const [liked, updateLiked] = React.useState(false);
 
   if (liked) {
-    return 'You liked this.';
+    return 'You liked this.(function)';
   }
 
-  return createElement('button', { onClick: () => updateLiked(true) }, 'Like');
+  return createElement('button', { onClick: () => updateLiked(true) }, 'Like(function)');
 }
 
 ReactDOM.render(
-  createElement(LikeButton),
+  createElement(reactButton),
   document.getElementById('function_button_container')
 );
