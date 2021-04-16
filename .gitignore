@@ -1,2 +1,4 @@
 .idea/
 ./lodash/lodash-4.17.19
+
+.dccache
