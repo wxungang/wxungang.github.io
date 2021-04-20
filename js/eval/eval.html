@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>eval created by xiaogang on 2017/10/25</title>
+    <link type="text/css" rel="stylesheet" href="eval.css"/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header>eval</header>
+<pre>
+
+严格面试下 eval 有自己的词法作用域！
+
+    JavaScript 中 还 有 其 他 一 些 功 能 效 果 和 eval(..) 很 相 似。 setTimeout(..) 和
+setInterval(..) 的第一个参数可以是字符串， 字符串的内容可以被解释为一段动态生成的
+函数代码。 这些功能已经过时且并不被提倡。 不要使用它们！
+
+new Function(..) 函数的行为也很类似， 最后一个参数可以接受代码字符串， 并将其转
+化为动态生成的函数（ 前面的参数是这个新生成的函数的形参）。 这种构建函数的语法比
+eval(..) 略微安全一些， 但也要尽量避免使用。
+
+在程序中动态生成代码的使用场景非常罕见， 因为它所带来的好处无法抵消性能上的损
+失
+</pre>
+</body>
+<script type="text/javascript">
+    (() => {
+        function foo(str, a) {
+            eval(str); // 欺骗！
+            console.log(a, b);
+        }
+
+        var b = 2;
+        foo("var b = 3;", 1); // 1, 3
+    })();
+
+    (() => {
+        'use strict';
+
+        function foo(str, a) {
+            eval(str); // 欺骗！
+            console.log(a, b);
+        }
+
+        var b = 2;
+        foo("var b = 3;", 1); // 1, 3
+    })();
+</script>
+</html>

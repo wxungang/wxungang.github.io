@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>functor</title>
+</head>
+<body>
+<header>container functor</header>
+</body>
+<script type="text/javascript" src="./ramda.js"></script>
+<script type="text/javascript">
+
+    ((_) => {
+        console.log("----------------------------------------------------")
+        var trace = _.curry(function (tag, x) {
+            console.log(tag, x);
+            return x;
+        });
+
+
+        var IO = function (f) {
+            this.__value = f;
+        }
+
+        IO.of = function (x) {
+            return new IO(function () {
+                return x;
+            })
+        }
+
+        IO.prototype.map = function (f) {
+            return new IO(_.compose(f, trace("__value"), this.__value));
+        }
+
+        var io_window = new IO.of(window);
+
+
+        console.log(io_window.map(function (x) {
+            console.log(x);
+            return x.innerWidth;
+        }));
+
+        //console.log(io_window.map(_.prop('location')).map(_.prop('href')).map(_.split('/')));
+
+    })(R);
+
+    ((_) => {
+        console.log("----------------------------------------------------")
+        var trace = _.curry(function (tag, x) {
+            console.log(tag, x);
+            return x;
+        });
+
+
+    })(R);
+
+
+</script>
+</html>

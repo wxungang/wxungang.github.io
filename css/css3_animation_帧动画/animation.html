@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>animation 帧动画 </title>
+    <style type="text/css">
+        /**
+             定义动画帧
+         */
+        @keyframes animation_demo {
+            5% {
+                background-color: #c7c7c7;
+                width: 50px;
+                height: 50px;
+            }
+            20% {
+                background-color: #004974;
+                width: 100px;
+                height: 100px;
+            }
+            50% {
+                background-color: #04BE02;
+                width: 200px;
+                height: 200px;
+            }
+            80% {
+                background-color: #ff6666;
+                width: 100px;
+                height: 100px;
+            }
+            100% {
+                background-color: #c7c7c7;
+                width: 50px;
+                height: 50px;
+            }
+
+        }
+
+        .animation {
+            /*animation: name duration timing-function delay iteration-count direction;*/
+            animation: animation_demo 10s linear 5s 2 alternate;
+            animation-fill-mode: both;
+            /*非动画时间样式*/
+            /*background-color: #c7c7c7;*/
+            /*width: 250px;*/
+            /*height: 250px;*/
+        }
+    </style>
+</head>
+<body>
+<header>
+    animation 帧动画
+    <br/> 类似于动画片，通过 百分比去控制样式 顺序 展示 。
+</header>
+<div class="animation">
+    animation 帧动画
+</div>
+</body>
+</html>

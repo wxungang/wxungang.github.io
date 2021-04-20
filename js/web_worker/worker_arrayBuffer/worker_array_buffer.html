@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>worker_array_buffer</title>
+</head>
+<body>
+<header>worker_array_buffer</header>
+</body>
+<script type="text/javascript">
+
+    var worker = new Worker('./worker_array_buffer.js');
+
+//    worker.postMessage({
+//        key: 'worker_array_buffer'
+//    });
+
+    worker.onmessage=function (e) {
+        console.log(e.data);
+    }
+
+
+    var uInt8Array = new Uint8Array(1024*1024*8); // 32MB
+
+    for (var i = 0; i < uInt8Array .length; ++i) {
+        uInt8Array[i] = i;
+    }
+
+    worker.postMessage(uInt8Array.buffer, [uInt8Array.buffer]);
+
+
+    //将字符串 转换成 Blob 对象
+    var blob = new Blob(["Hello World!",'e'], {
+        type: 'text/plain'
+    });
+//    console.info(blob);
+//    console.info(blob.slice(1, 3, 'text/plain'));
+
+
+    //将 TypeArray  转换成 Blob 对象
+    var array = new Uint16Array([97, 32, 72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33]);
+    //测试成功
+    var blob = new Blob([array], { type: "application/octet-binary" });
+    //测试成功
+//    var blob = new Blob([array]);
+    //将 Blob对象 读成字符串
+    var reader = new FileReader();
+    reader.readAsText(blob, 'utf-8');
+    reader.onload = function (e) {
+        console.info(reader.result); //a Hello world!
+    }
+    console.info(blob);
+</script>
+</html>

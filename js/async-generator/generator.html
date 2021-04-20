@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>generator</title>
+</head>
+<body>
+<h3>generator</h3>
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript" src="./generator.js"></script>
+<script type="text/javascript">
+    function* helloWorldGenerator() {
+        yield 'hello';
+        yield 'world';
+        return 'ending';
+    }
+    var hw = helloWorldGenerator();
+    console.log(hw.next());
+    // { value: 'hello', done: false }
+
+    hw.next()
+    // { value: 'world', done: false }
+
+    hw.next()
+    // { value: 'ending', done: true }
+
+    console.log(hw.next())
+    // { value: undefined, done: true }
+
+
+    //=================================================================
+
+    var arr = [1, [[2, 3], 4], [5, 6]];
+
+    var flat = function*(a) {
+        var length = a.length;
+        for (var i = 0; i < length; i++) {
+            var item = a[i];
+            if (typeof item !== 'number') {
+                yield* flat(item);//异步函数是可以递归的
+            } else {
+                yield item;//使用next() 调用
+            }
+        }
+    };
+
+    for (var f of flat(arr)) {
+        //console.log(f); //1,2,3,4,5,6
+    }
+
+    //这样比较好懂些
+    var gn = flat(arr);
+    gn.next();
+    console.log(gn.next());
+
+    //=================================================================
+    function* foo(x) {
+        var y = 2 * (yield (x + 1));// y = 2 * (yield (x + 1000))  并不会影响后续的next()函数输出
+        var z = yield (y / 3);
+        return (x + y + z);//5|24|13
+    }
+
+    //    var a = foo(5);
+    //    a.next() // Object{value:6, done:false}
+    //    a.next() // Object{value:NaN, done:false}
+    //    a.next() // Object{value:NaN, done:true}
+
+
+    var b = foo(5);
+    console.log(b.next(6666666666)) // { value:6, done:false } //todo :第一个next 赋值无效 .todo: 同时返回的是：yield (x + 1)；不是： 2 * (yield (x + 1))
+    console.log(b.next(12)) // { value:8, done:false }//todo : next中的赋值是赋给 yield (x + 1000) 语句整体。不是函数入参 todo：y本身的值是2*12=24
+    console.log(b.next(13)) // { value:42, done:true }
+
+    //=================================================================
+    function* fibonacci() {
+        let [prev, curr] = [0, 1];
+        for (; ;) {
+            [prev, curr] = [curr, prev + curr];
+            yield curr;
+        }
+    }
+
+    for (let n of fibonacci()) {
+        if (n > 1000) break;
+        console.log(n);
+    }
+
+    //
+
+</script>
+</html>

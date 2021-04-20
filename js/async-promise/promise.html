@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>promise</title>
+</head>
+<body>
+<h3>promise</h3>
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript" src="./promise.js"></script>
+<script type="text/javascript">
+    // 回调处理
+    util.ajax_promise({test: 1}).then(function (data) {
+        //console.log(data);
+    }, function (data) {
+        //console.log(data);
+    });
+    //=================================================================
+    //连续回调处理
+    //问题：并没有很好的解决回调嵌套的问题
+    util.ajax_promise({test: 1}).then(function (data) {
+        //console.log(data);
+        util.ajax_promise({test: 2}).then(function (data) {
+            //console.log(data);
+        }, function (error) {
+            // console.log(error);
+        })
+    }, function (data) {
+        // console.log(data);
+    });
+
+    //=================================================================
+    //优雅的处理连续回调问题
+    // 解决方案： 采用箭头函数。单语句执行[即：不容许用大括号语法]
+    // 新的问题：异步逻辑的回调函数怎么执行。
+    var _pramas1 = {
+        data: {
+            test1: 1
+        },
+        callback: function (data, code) {
+            console.log("_pramas1 回调函数处理逻辑");
+            if (code) {
+                console.log(data);
+            }
+        }
+    };
+
+    function aysnc_cb2(data1) {
+        //执行上层的异步回调逻辑
+        //do somethings
+        //准备 入参 _pramas2
+        //dosomeThings
+        var _pramas2 = {
+            data: Object.assign({test2: 2}, data1),
+            callback: function (data) {
+                console.log("_pramas2 回调函数处理逻辑");
+                console.log(data);
+            }
+        };
+
+        return _pramas2;
+    }
+    function aysnc_cb3(data2) {
+        //执行上层的异步回调逻辑
+        //do somethings
+        //准备 入参 _pramas3
+        //dosomeThings
+        var _pramas3 = {
+            data: Object.assign({test3: 3}, data2),
+            callback: function (data) {
+                console.log("_pramas3 回调函数处理逻辑");
+                console.log(data);
+            }
+        };
+
+        return _pramas3;
+    }
+    //调用比较优雅的解决了。但相关的回调逻辑不太优雅。
+    //    util.aysnc_func(_pramas1)
+    //        .then(data => util.aysnc_func(aysnc_cb2(data)), err => console.log(err))
+    //        .then(data => util.aysnc_func(aysnc_cb3(data)), err => console.log(err))
+    //        .then(data => console.log(data), err => console.log(err));
+
+    //=================================================================
+    /**
+     * 传入参数 n，表示这个函数执行的时间（毫秒）
+     * 执行的结果是 n + 200，这个值将用于下一步骤
+     */
+    function takeLongTime(n) {
+        return new Promise(resolve => {
+            setTimeout(() => resolve(n + 200), n);
+        });
+    }
+
+    function step1(n) {
+        console.log(`step1 with ${n}`);
+        return takeLongTime(n);
+    }
+
+    function step2(m, n) {
+        console.log(`step2 with ${m} and ${n}`);
+        return takeLongTime(m + n);
+    }
+
+    function step3(k, m, n) {
+        console.log(`step3 with ${k}, ${m} and ${n}`);
+        return takeLongTime(k + m + n);
+    }
+
+    function doIt() {
+        console.time("doIt");
+        const time1 = 300;
+        step1(time1)
+            .then(time2 => {
+                return step2(time1, time2)
+                    .then(time3 => [time1, time2, time3]);
+            })
+            .then(times => {
+                const [time1, time2, time3] = times;
+                return step3(time1, time2, time3);
+            })
+            .then(result => {
+                console.log(`result is ${result}`);
+                console.timeEnd("doIt");
+            });
+    }
+
+    doIt();
+</script>
+</html>

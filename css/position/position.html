@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>position</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            height: 1600px;
+        }
+
+        .fixed{
+            position: fixed;
+            top: 100px;
+            left: 10px;
+            margin: 10px;
+            padding: 15px;
+            border: 5px solid #c7c7c7;
+        }
+        .absolute {
+            position: absolute;
+            top: 200px;
+            left: 10px;
+            margin: 20px;
+            padding: 15px;
+            border: 5px solid #c7c7c7;
+            width: 200px;
+        }
+
+        .left{
+            width: 33%;
+            height: 80px;
+            float: left;
+            border: 1px solid #c7c7c7;
+            box-sizing: border-box;
+        }
+        .left.relative{
+            position: relative;
+            left: 10px;
+            top:-5px;
+        }
+
+        .static{
+            position: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="fixed">fixed header</header>
+    <div class="absolute">absolute content
+        <div class="absolute">absolute content two</div>
+        <div class="static">
+            <div class="absolute">absolute content three</div>
+        </div>
+
+    </div>
+    <div class="relative-content">
+        <div class=" left">relative content</div>
+        <div class="relative left">relative content</div>
+        <div class=" left">relative content</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //position
+
+    //默认 static :  此时 top, right, bottom, left 和 z-index 属性无效。
+
+    //relative : 相对于自身 位置 偏移。
+
+    //fixed : 相对于 屏幕视窗
+
+    //absolute ：相对于 最近的非 static 定位的祖先元素
+
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>iframe_load created by xiaogang on 2017/11/21</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        iframe {
+            width: 1000px;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+<header>iframe_load</header>
+
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript">
+  var _iframe_node = document.createElement('iframe');
+  _iframe_node.setAttribute('name', 'iframe_node');
+  _iframe_node.setAttribute('src', 'https://www.baidu.com/');
+
+  document.body.appendChild(_iframe_node);
+
+
+  $('body').on('onload', 'iframe', function (e) {
+    console.log('iframe load!');
+  })
+
+  setTimeout(function () {
+    console.log($("iframe #head").text());
+  }, 2000);
+
+</script>
+</html>

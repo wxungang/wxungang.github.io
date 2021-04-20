@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>sticky</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            height: 1600px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            line-height: 50px;
+            text-align: center;
+            width: 100%;
+            border-bottom: 1px solid #c7c7c7;
+            z-index: 3;
+            background: #fff;
+        }
+
+         .list, .title {
+            line-height: 30px;
+            border-bottom: 1px solid #c7c7c7;
+        }
+
+        .title {
+            background: #B8C1C8;
+            position: sticky;
+            top: 50px;
+        }
+
+        .lists-content {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .lists-content-inner{
+            height: 400px;
+            overflow-y: scroll;
+            position: relative;
+        }
+        .lists-content-inner .title{
+            top: 0px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>position sticky</header>
+    <div class="lists-content">
+        <p class="title">title A</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="title">title B</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+    </div>
+    <p style="line-height: 40px;background: #ccc;">以下是 局部滚动 展示</p>
+    <div class="lists-content-inner">
+        <!--<p style="line-height: 50px;text-align: center;background: #fff;z-index: 3;top: 0;">局部滚动 sticky</p>-->
+        <p class="title">title A</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="title">title B</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="title">title C</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="title">title D</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="title">title E</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+        <p class="list">list</p>
+    </div>
+</div>
+</body>
+</html>

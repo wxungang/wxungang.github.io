@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>自适应布局</title>
+    <style type="text/css" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .overflow_hidden {
+            overflow: hidden;
+        }
+
+        .demo1 {
+
+        }
+
+        .demo1 .left {
+            width: 50px;
+            height: 100px;
+            float: left;
+        }
+
+        .demo1 .right {
+            width: 50px;
+            height: 100px;
+            float: left;
+        }
+
+        .demo2 {
+            display: flex;
+        }
+
+        .demo2 .left {
+            flex: 0 0 50px;
+            height: 100px;
+        }
+
+        .demo2 .right {
+            flex: 1;
+            /*height: 80px;*/
+        }
+
+        .demo3 {
+
+        }
+
+        .demo3 .left {
+            float: left;
+            width: 50px;
+            height: 100px;
+        }
+
+        .demo3 .right {
+            float: left;
+            width: calc(100% - 50px);
+        }
+
+        .demo4 {
+
+        }
+
+        .demo4 .left {
+            float: left;
+            width: 50px;
+            height: 100px;
+        }
+
+        .demo4 .right {
+            padding-left: 50px;
+        }
+
+        .demo5 {
+
+        }
+
+        .demo5 .left {
+            float: left;
+            width: 50px;
+            height: 100px;
+        }
+
+        .demo5 .right {
+            float: right;
+            width: 50px;
+            height: 100px;
+        }
+
+        .demo5 .margin {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        .demo6 {
+            display: table;
+            width: 100%;
+        }
+
+        .demo6 .left {
+            display: table-cell;
+            width: 50px;
+            height: 100px;
+        }
+
+        .demo6 .right {
+            display: table-cell;
+        }
+
+    </style>
+</head>
+<body>
+    <header>必须是block 元素</header>
+<div class="demo1 overflow_hidden" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="right overflow_hidden" style="background-color: #004974;">right (bfc)
+        <p class="middle">middle</p>
+        <p class="right">right</p>
+    </div>
+</div>
+
+<div class="demo2" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="right" style="background-color: #004974;">right (flex)</div>
+</div>
+
+<div class="demo3 overflow_hidden" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="right" style="background-color: #004974;">right (calc)</div>
+</div>
+
+<div class="demo4 overflow_hidden" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="" style="float: right">right (float 元素 提前 ！)</div>
+    <div class="right" style="background-color: #004974;">right (padding)</div>
+</div>
+<div class="demo5 overflow_hidden" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="" style="float: right">right (float 元素 提前 ！)</div>
+    <div class="margin" style="margin-right: 50px;ackground-color: #004974;">
+        do not float right (margin-left)</span>
+    </div>
+
+</div>
+<div class="demo5 overflow_hidden" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="margin" style="background-color: #004974;">right (margin)</div>
+    <div class="right" style="background-color: #1E88C7;">right</div>
+</div>
+
+<div class="demo6" style="border-bottom: 1px solid #c7c7c7;">
+    <div class="left" style="background-color: #1E88C7;">left</div>
+    <div class="right" style="background-color: #004974;">right (table)</div>
+</div>
+
+</body>
+</html>

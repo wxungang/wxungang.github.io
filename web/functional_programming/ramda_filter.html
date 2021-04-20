@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>array</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header>array</header>
+</body>
+<script type="text/javascript" src="./ramda.js"></script>
+<script type="text/javascript">
+
+    var trace = R.curry(function (tag, x) {
+        console.log(tag, x);
+        return x;
+    });
+
+    function multify(x) {
+        return x - 2;
+    }
+
+    function add(x) {
+        return x + 1;
+    }
+    // filter :: (a -> Bool) -> [a] -> [a]
+    //    compose(map(f), filter(compose(p, f))) == compose(filter(p), map(f));
+    var func1 = R.compose(R.map(add), trace("filter"), R.filter(R.compose(multify, trace("add:"), add)));
+    var func2 = R.compose(R.filter(multify), trace("map:"), R.map(add))
+
+
+    //
+    console.log(func1([3,4]));//[4,5]
+    console.log(func1([1,2]));//[3]
+
+    console.log(func2([3,4]));
+    console.log(func2([1,2]));//[3]
+
+
+    var func3 = R.compose(multify, trace("add:"), add);
+    var func4 = (R.compose(multify, trace("f4:"), R.filter(add)));
+    //console.log(func3(3,4))
+    //    console.log(func4([3]))
+
+
+</script>
+</html>

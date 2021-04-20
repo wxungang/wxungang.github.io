@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        .position {
+            position: relative;
+        }
+
+        .box {
+            margin: 10px;
+            border: 2px;
+            padding: 0 0 0 0;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    dom 操作
+</header>
+<div class="position" id="position"></div>
+<div class="box" id="box"></div>
+</body>
+<script type="text/javascript" src="../../common/require.js"></script>
+<script type="text/javascript" src="./dom.js"></script>
+<script type="text/javascript">
+    var style = getStyle(document.getElementById('position'), 'position');
+    console.log(style);
+    getStyle(document.getElementById('box'), 'padding');
+</script>
+</html>

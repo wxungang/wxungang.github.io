@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>浏览器渲染和执行</title>
+    <script type="text/javascript">
+        var h3 = document.getElementsByTagName("h3");
+        console.log(h3);
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3, p {
+            width: 100%;
+            /*flex: 1;*/
+        }
+    </style>
+</head>
+<body>
+<h3 id="title" style="margin: 0;">浏览器渲染和执行</h3>
+<p>测试demo</p>
+<script type="text/javascript">
+    var h3 = document.getElementsByTagName("h3");
+    console.log(h3);
+</script>
+</body>
+</html>

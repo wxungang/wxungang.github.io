@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>bfc</title>
+    <link type="text/css" rel="stylesheet" href="./bfc.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .main {
+            height: 200px;
+            background: #fcc;
+        }
+
+        .bfc {
+
+        }
+
+        .bfc .aside {
+            width: 150px;
+            height: 50px;
+            float: left;
+            background: #f66;
+        }
+    </style>
+</head>
+<body>
+<header>
+    Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。<br>
+
+    最常见的Formatting context有Block fomatting context(简称BFC)和Inline formatting context(简称IFC)。<br>
+
+    CSS2.1 中只有BFC和IFC, CSS3中还增加了GFC和FFC  <br>
+
+    BFC:全称”Block Formatting Context”, 中文为“块级格式化上下文”<br>
+
+    用处:（如清浮动，防止margin重叠等）<br>
+</header>
+<div class="flux" style="margin:10px;padding: 10px;border: 10px solid blue;">
+    流体特性：
+    块状水平元素，如div元素（下同），在默认情况下（非浮动、绝对定位等），水平方向会自动填满外部的容器；
+    如果有margin-left/margin-right, padding-left/padding-right, border-left-width/border-right-width等，
+    实际内容区域会响应变窄。
+</div>
+<div class="flux-a">
+    <!--<div class="left" style="width: 50px;height: 50px;">-->
+
+
+    <!--</div>-->
+    <div class="content" style="margin-left:65px;">自适应宽度</div>
+</div>
+<div class="main clearfix"></div>
+<div class="bfc">
+    <div class="aside"></div>
+    <div class="content overflow_hidden">图文左右布局图文左右布局图文左右布局图文左右布局图文左右布局
+        图文左右布局图文左右布局图文左右布局图文左右布局图文左右布局
+    </div>
+</div>
+
+
+</body>
+</html>

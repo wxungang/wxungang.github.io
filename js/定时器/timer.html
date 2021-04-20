@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+<header>timer</header>
+</body>
+<script type="text/javascript">
+
+    function addItem() {
+        var dom = document.createElement('p');
+//        var node = document.createTextNode("这是新段落。");
+//        dom.appendChild(node);
+
+        dom.innerText = 0;
+
+        document.body.appendChild(dom);
+
+        add(dom);
+    }
+
+    var timer = setInterval(function () {
+        addItem();
+
+    }, 5000);
+
+    setTimeout(function () {
+        clearInterval(timer);
+    }, 50000);
+
+    function add(dom) {
+        setInterval(function () {
+            dom.innerText = parseInt(dom.innerText) + 1;
+        }, 1000)
+    }
+
+
+</script>
+<script type="text/javascript">
+    (() => {
+
+        //在默认情况下，使用 window.setTimeout() 时，this 关键字会指向 window （或全局）对象。
+        // 当使用类的方法时，需要 this 引用类的实例，你可能需要显式地把 this 绑定到回调函数以便继续使用实例。
+        function LateBloomer() {
+            this.petalCount = Math.ceil(Math.random() * 12) + 1;
+        }
+
+// Declare bloom after a delay of 1 second
+        LateBloomer.prototype.bloom = function () {
+            window.setTimeout(this.declare.bind(this), 1000);
+            window.setTimeout(this.declare, 2000);
+        };
+
+        LateBloomer.prototype.declare = function () {
+            //this 不一定 全部指向 函数的实例
+            console.log('I am a beautiful flower with ' + this.petalCount + ' petals!');
+        };
+
+
+        var flower = new LateBloomer();
+        flower.bloom();  // 一秒钟后, 调用'declare'方法
+    })()
+</script>
+</html>

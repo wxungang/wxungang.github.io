@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>await</title>
+</head>
+<body>
+<h3>await</h3>
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript" src="await.js"></script>
+<script type="text/javascript">
+    //========================基本 demo ===============================
+    function timeout(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve(), ms);
+        });
+    }
+
+    async function asyncPrint(value, ms) {
+        await timeout(ms);
+        console.log(value)
+    }
+
+    asyncPrint('hello world', 1500);
+
+    //========================基本 ajax ===============================
+    util.ajax({
+        url: "./data.json",
+        type: "get",
+        successCallback: function (data) {
+            //console.log(data);
+        },
+        errorCallback: function (data) {
+            // console.log(data);
+        }
+    });
+
+    //更好的处理方式。类似同步处理
+    (async function async_func() {
+        let asyncData = await  util.ajax_async({url: './data.json'});
+        console.log(asyncData);
+    })();
+
+
+</script>
+</html>

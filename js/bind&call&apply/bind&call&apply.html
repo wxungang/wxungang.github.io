@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>bind&call&apply</title>
+</head>
+<body>
+<header>bind&call&apply</header>
+</body>
+<script type="text/javascript">
+    (() => {
+        console.log('---------------------------call-----------------------------------');
+
+        function fruit(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        function apple(name, price) {
+            fruit.call(this, name, price);
+
+        }
+
+        var a = new apple("apple", 6);
+        console.log(a);
+
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            arr[i] = function () {
+                console.log(i);
+            }
+        }
+
+        arr[6]();
+
+    })();
+
+    (() => {
+        console.log('---------------------------apply-----------------------------------');
+        // apply 和call 的差异主要就是参数传递的不同，apply适合参数不定的情况。
+        // 正常参数确定的情况下，call使用更多
+
+        function fruit(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        function apple(name, price) {
+            fruit.apply(this, [name, price]);
+
+        }
+
+        var a = new apple("apple", 6);
+        console.log(a);
+
+
+    })();
+
+    (() => {
+        console.log('---------------------------bind-----------------------------------');
+
+        // bind ：不立即执行函数，同事this不能被覆盖。返回一个新函数
+
+
+        function fruit(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        function apple(name, price) {
+            fruit.bind(this, name, price)();
+
+        }
+
+        var a = new apple("apple", 6);
+        console.log(a);
+
+        function list() {
+            console.log(arguments);
+            return Array.prototype.slice.call(arguments);//arguments.slice();
+        }
+
+        console.log(list(1, 2, 3, 4));
+
+        // Create a function with a preset leading argument
+        var leadingThirtysevenList = list.bind(undefined, 37);
+        console.log(leadingThirtysevenList);
+        console.log(leadingThirtysevenList()); // [37]
+        console.log(leadingThirtysevenList(1, 2, 3)); // [37, 1, 2, 3]
+        console.log(leadingThirtysevenList(4, 5, 6)); // [37, 4, 5, 6]
+
+    })();
+
+    (() => {
+        console.log('----------------------------bind 实现-------------------------------------------');
+        Function.prototype.bind = function (oThis) {
+            if (typeof this !== "function") {
+                // closest thing possible to the ECMAScript 5
+                // internal IsCallable function
+                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+            }
+
+            var aArgs = Array.prototype.slice.call(arguments, 1),
+                fToBind = this,
+                fNOP = function () {
+                },
+                fBound = function () {
+                    return fToBind.apply(this instanceof fNOP
+                        ? this
+                        : oThis || this,
+                        aArgs.concat(Array.prototype.slice.call(arguments)));
+                };
+
+            fNOP.prototype = this.prototype;
+            fBound.prototype = new fNOP();
+
+            return fBound;
+        };
+
+        function func() {
+            console.log(this);
+        }
+
+        func.bind({key: "a"}).call({key: "b"});
+    })();
+
+    (() => {
+        console.log(`--------------callback---------------`);
+
+        /**
+         *
+         * @param data
+         * @param code
+         * @param msg
+         */
+        function callback(data, code, msg) {
+            console.log(msg);
+            if (code == 100) {
+                console.log(`ok  & ${msg} & ${JSON.stringify(data)}`);
+            } else {
+                console.log(`err & ${msg} & ${JSON.stringify(data)}`);
+            }
+        }
+
+        /**
+         *
+         * @param params
+         */
+        function standard(params) {
+            console.log(`do standard something...`);
+            params.callback && params.callback(params, params.code, params.msg);
+        }
+
+        function special(data, err, success) {
+            console.log(`do special something...`);
+            if (data.code == 100) {
+                success && success(data);
+            } else {
+                err && err(data);
+            }
+        }
+
+        function middleware(params) {
+            special(params.data, params.callback.bind(null, '', 0), params.callback.bind(null, '', 100))
+        }
+
+        standard({
+            code: 100,
+            msg: 'ok',
+            callback: callback
+        });
+
+        middleware({
+            data: {
+                code: 99,
+                msg: 'err'
+            },
+            callback: callback
+        })
+        middleware({
+            data: {
+                code: 100,
+                msg: 'err'
+            },
+            callback: callback
+        })
+    })()
+
+</script>
+</html>

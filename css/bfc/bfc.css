@@ -1,0 +1,19 @@
+.clearfix_1 {
+    /*overflow: hidden;*/
+    /**zoom: 1;*/
+    /*zoom: 1;*/
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.overflow_hidden {
+    overflow: hidden;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>worker_asyncEval</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="asyncEval.js"></script>
+<script type="text/javascript">
+    // asynchronous alert message...
+    asyncEval("3 + 2", function (sMessage) {
+        alert("3 + 2 = " + sMessage);
+    });
+
+    // asynchronous print message...
+    asyncEval("\"Hello World!!!\"", function (sHTML) {
+        document.body.appendChild(document.createTextNode(sHTML));
+    });
+
+    // asynchronous void...
+    //asyncEval("(function () {\n\tvar oReq = new XMLHttpRequest();\n\toReq.open(\"get\", \"http://www.mozilla.org/\", false);\n\toReq.send(null);\n\treturn oReq.responseText;\n})()");
+</script>
+</html>

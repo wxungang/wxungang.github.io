@@ -1,0 +1,33 @@
+/**
+ * Created by xiaogang on 2017/10/11.
+ */
+
+table {
+    text-align: center;
+    line-height: 20px;
+    border-collapse: initial;
+    border-spacing: 0;
+
+    border-top: #c7c7c7 solid 1px;
+    border-left: #c7c7c7 solid 1px;
+
+}
+table tr{
+    border-bottom: #c7c7c7 solid 1px;
+    border-left: #c7c7c7 solid 1px;
+}
+table tbody{
+    border-top: #c7c7c7 solid 1px;
+    border-left: #c7c7c7 solid 1px;
+}
+table th {
+    line-height: 40px;
+    border-right: #c7c7c7 solid 1px;
+    border-bottom: #c7c7c7 solid 1px;
+}
+
+table td {
+    min-width: 60px;
+    border-bottom: #c7c7c7 solid 1px;
+    border-right: #c7c7c7 solid 1px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>callback created by xiaogang on 2017/10/16</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header>callback</header>
+</body>
+<script type="text/javascript">
+    (function () {
+        function callback(data, code, msg) {
+            if (code == 100) {
+                console.log(`ok  & ${msg} & ${JSON.stringify(data)}`);
+            } else {
+                console.log(`err & ${msg} & ${JSON.stringify(data)}`);
+            }
+        }
+
+
+        function func(params) {
+            console.log(`do something...`);
+            params.callback && params.callback(params, params.code, params.msg);
+        }
+
+
+        func({
+            code: 100,
+            msg: 'ok',
+            callback: callback
+        });
+
+    })()
+
+
+</script>
+</html>

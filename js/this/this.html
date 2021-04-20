@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>this created by xiaogang on 2017/10/27</title>
+    <link type="text/css" rel="stylesheet" href="this.css"/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+<header>this</header>
+
+</body>
+<script type="text/javascript" src="bind.js"></script>
+<script type="text/javascript">
+    (() => {
+        console.log('error this 指向函数本身');
+
+        //error this 指向函数本身
+
+        function func(num) {
+            console.log(num);
+
+            this.count++;
+            !num && console.log(this);
+        }
+
+        func.count = 0;
+        for (let i = 0; i < 4; i++) {
+            func(i);
+        }
+
+        console.log(func.count);
+    })();
+
+    ((msg) => {
+//1. 创建（ 或者说构造） 一个全新的对象。
+//2. 这个新对象会被执行 [[ 原型 ]] 连接。
+//3. 这个新对象会绑定到函数调用的 this。
+//4. 如果函数没有返回其他对象， 那么 new 表达式中的函数调用会自动返回这个新对象。
+        console.log(msg);
+
+        function func(num) {
+            this.a = num;
+
+            return {
+                b: num
+            }
+        }
+
+        var f = new func(8);
+
+        console.log(f);
+    })('====new====');
+
+    (() => {
+
+    })();
+</script>
+</html>

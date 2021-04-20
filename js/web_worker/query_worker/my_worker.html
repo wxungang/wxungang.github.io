@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>my_worker</title>
+</head>
+<body>
+<p>my_worker</p>
+</body>
+<script type="text/javascript" src="my_worker_constract.js"></script>
+<script type="text/javascript">
+    // your custom "queryable" worker
+    var oMyTask = new workerConstract("my_task.js");
+    //
+    oMyTask.task({
+        task: 'add',
+        data: [1, 2, 3],
+        callback: function (data, code, msg) {
+            // console.log(this);
+            console.log("--------------add-----------------------");
+            console.log(data + "||" + code);
+        }
+    })
+
+    oMyTask.addTask({
+        callback: function (data, code, msg) {
+            console.log("--------------sub-----------------------");
+            console.log(data);
+        }
+    }, 'sub');
+
+    oMyTask.task({
+        task: 'sub',
+        data: [3, 2, 1]
+    })
+
+    oMyTask.task({
+        task: 'mutil',
+        data: [1, 2, 3]
+    })
+
+    oMyTask.task({
+        task: 'divi',
+        data: [6, {}],
+        callback: function (data, code, msg) {
+            console.log("--------------div-----------------------");
+            console.log(data);
+        }
+    })
+
+    oMyTask.task({
+        task: 'add',
+        data: [{}]
+    })
+
+
+</script>
+</html>

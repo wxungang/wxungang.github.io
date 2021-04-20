@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>z-index created by xiaogang on 2018/5/17</title>
+    <link type="text/css" rel="stylesheet" href="./z-index.css"/>
+    <style type="text/css">
+        div {
+            box-sizing: border-box;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 200px;z-index: 5;background-color: #1C90F3;position: relative;">
+    banner
+</div>
+<div style="position: absolute;top:100px;height:600px;width: 100%;background-color:#04BE02; ">
+    <div style="height: 200px;z-index: 10;background-color: #99D3F5;margin: 0 20px;position: relative;">
+        inner box
+    </div>
+    outer box
+</div>
+
+
+<pre>
+z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。
+注释：元素可拥有负的 z-index 属性值。
+注释：Z-index 仅能在定位元素上奏效（position属性值设置除默认值static以外的元素，包括relative，absolute，fixed样式）
+
+    inner 和 banner 的position 去除试试！
+</pre>
+
+</body>
+</html>

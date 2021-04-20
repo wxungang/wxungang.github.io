@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (0) {
+                resolve(10)
+            } else {
+                reject(11)
+            }
+        }, 0)
+    }).then(data => {
+        if (0) {
+            return Promise.resolve(data + '20')
+        } else {
+            return Promise.reject(data + '21')
+        }
+    }, err => {
+        //err 函数 需要自己主动的 reject 。（Promise 默认的 return 都是 resolve 到下一级)
+        return Promise.reject(err);
+    })
+        .then(data => {
+            console.log(data)
+        }, err => {
+            console.log(err)
+        })
+</script>
+</html>

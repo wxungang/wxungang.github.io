@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>promise use</title>
+</head>
+<body>
+<header>promise use</header>
+</body>
+<script type="text/javascript" src="./myPromise/implement_one/promise.js"></script>
+<script type="text/javascript">
+    (() => {
+
+        function promiseInstance(flag) {
+            return new Promise((resolve, reject) => {
+                console.log(resolve.toString());
+
+                //your Asynchronous operations eg:ajax
+                setTimeout(function () {
+                    flag ? resolve("resolve") : reject("reject");
+                }, 1000);
+            })
+        }
+
+        // promiseInstance(true).then(res => console.log(res), err => console.log(err));
+    });
+
+    (() => {
+        var p1 = new Promise(function (resolve, reject) {
+            setTimeout(() => reject('fail'), 3000)
+        })
+
+        var p2 = new Promise(function (resolve, reject) {
+            setTimeout(() => resolve(p1), 1000);
+//            setTimeout(() => reject("failed"), 10)
+        })
+
+        p2
+            .then(result => {
+                console.log("result");
+                console.log(`${result} result`)
+            })
+        //.catch(error => console.log(`${error} error`))
+    });
+
+
+    (() => {
+        //implement one
+
+        let p = new myPromise((resolve, reject) => {
+            let flag = false;
+            setTimeout(function () {
+                flag ? resolve(flag) : reject(flag);
+            }, 1000);
+        })
+
+        p.then((res) => {
+            console.log(res)
+        }, (rej) => {
+            console.log(rej)
+        })
+
+
+        setTimeout(function () {
+//            p.then((res) => {
+//                console.log(res)
+//            }, (rej) => {
+//                console.log(`===rej two ==${rej}=`)
+//            });
+        },2000);
+
+
+
+    })()
+</script>
+
+
+</html>

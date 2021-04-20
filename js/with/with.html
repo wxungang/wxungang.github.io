@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>with created by xiaogang on 2017/10/25</title>
+    <link type="text/css" rel="stylesheet" href="with.css"/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header>with</header>
+
+</body>
+<script type="text/javascript">
+    (() => {
+        //with 通常被当作重复引用同一个对象中的多个属性的快捷方式， 可以不需要重复引用对象本身。
+        //比如：
+        var obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+        // 单调乏味的重复 "obj"
+        obj.a = 2;
+        obj.b = 3;
+        obj.c = 4;
+        // 简单的快捷方式
+        with (obj) {
+            a = 3;
+            b = 4;
+            c = 5;
+        }
+
+        // 但实际上这不仅仅是为了方便地访问对象属性。 考虑如下代码：
+        function foo(obj) {
+            with (obj) {
+                a = 2;
+            }
+        }
+
+        var o1 = {
+            a: 3
+        };
+        var o2 = {
+            b: 3
+        };
+        foo(o1);
+        console.log(o1.a); // 2
+        foo(o2);
+        console.log(o2.a); // undefined
+        console.log(a); // 2——不好， a 被泄漏到全局作用域上了！
+    })();
+
+    (() => {
+        var b = 0;
+
+        function foo(obj) {
+            with (obj) {
+                var b = 9;//外层 foo 作用域 变量！
+                a = 2;
+            }
+            console.log(b);
+        }
+
+        var o1 = {
+            a: 3
+        };
+
+        foo(o1);
+    })();
+</script>
+</html>

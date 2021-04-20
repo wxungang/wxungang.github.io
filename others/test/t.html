@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+    <meta charset='utf-8'/>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0'/>
+    <title></title>
+    <!-- <link href='./font-awesome-4.7.0/css/font-awesome.css' rel='stylesheet' media='screen'/> -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+
+        /*.safa-tree i{font-style:normal;  color:#fff;  background:#666;  width:1em;  display:inline-block;  text-align:center;  position:relative;  }
+        .safa-tree i:before{content:'+';  }*/
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .safa-tree {
+            line-height: 1rem;
+            font-size: 16px;
+
+            position: relative;
+        }
+
+        /*.safa-tree a {*/
+        /*display: block;*/
+        /*padding: 5px;*/
+        /*}*/
+
+        /*.safa-tree a:hover {*/
+        /*color: #666;*/
+        /*}*/
+
+        /*.safa-tree ul {*/
+        /*margin: 1em 0.5em;*/
+        /*}*/
+
+        /*.safa-tree i.fa {*/
+        /*position: relative;*/
+        /*}*/
+
+        /*.safa-tree i.fa-square-o {*/
+        /*display: none;*/
+        /*}*/
+
+        /*.safa-tree-node {*/
+        /*display: inline-block;*/
+        /*vertical-align: top;*/
+        /*position: relative;*/
+        /*cursor: pointer;*/
+        /*box-sizing: border-box;*/
+        /*}*/
+
+        /*.safa-tree-node > ul {*/
+        /*display: none;*/
+        /*position: absolute;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*background-color: rgba(0, 0, 0, 0.1);*/
+        /*}*/
+
+        /*.safa-tree-node.on {*/
+        /*position: static;*/
+        /*cursor: pointer;*/
+        /*}*/
+
+        /*.safa-tree-node.on > ul {*/
+        /*display: block;*/
+        /*}*/
+
+        /*.safa-tree-node.on > a > i.fa-plus-square:before {*/
+        /*content: "\F146";*/
+        /*}*/
+
+        /*.safa-tree-node.on > a > i.fa-plus-square:after {*/
+        /*content: "\F063";*/
+        /*position: absolute;*/
+        /*top: 100%;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*}*/
+
+        /*.safa-tree-node.on > a:empty > i.fa-plus-square {*/
+        /*display: none;*/
+        /*}*/
+
+        /*.safa-tree-node > a:empty i.fa-square-o {*/
+        /*display: inline-block;*/
+        /*}*/
+
+        /*.safa-tree-end > a > i::after {*/
+        /*display: none;*/
+        /*}*/
+
+        /*.safa-tree-end > a > i::before {*/
+        /*content: "\F111" !important;*/
+        /*}*/
+
+
+    </style>
+
+    <style type="text/css">
+        .hide {
+            display: none;
+        }
+
+        li, ul {
+            list-style: none;
+        }
+
+        .safa-tree ul {
+            position: absolute;
+
+        }
+
+        li.safa-tree-node {
+            overflow: hidden;
+            position: relative;
+            float: left;
+            margin-left: 8px;
+        }
+
+        .safa-tree-node .fa {
+            margin-left: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h3>选择标签关系</h3>
+<div class='safa-tree'>
+    <ul>
+        <li class='safa-tree-node'>
+            <a><i class='fa fa-plus-square'></i>一级标签</a>
+            <ul class="hide">
+                <li class='safa-tree-node'>
+                    <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>二级标签</a>
+                    <ul class="hide">
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class='safa-tree-node'>
+                    <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>二级标签</a>
+                    <ul class="hide">
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+        <li class='safa-tree-node'>
+            <a><i class='fa fa-plus-square'></i>一级标签</a>
+            <ul class="hide">
+                <li class='safa-tree-node'>
+                    <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>二级标签</a>
+                    <ul class="hide">
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class='safa-tree-node'>
+                    <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>二级标签</a>
+                    <ul class="hide">
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                        <li class='safa-tree-node'>
+                            <a><i class='fa fa-plus-square'></i><i class='fa fa-square-o'></i>三级标签</a>
+                            <ul>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                                <li class='safa-tree-node'><a><i class='fa fa-plus-square'></i><i
+                                        class='fa fa-square-o'></i>四级标签</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<script src='https://cdn.bootcss.com/jquery/2.2.2/jquery.min.js'></script>
+<script>
+
+    $(function () {
+        //切换
+        $('a').click(function () {
+            //切换图标
+            $(this).children('.fa').toggleClass('fa-plus-square fa-square-o');
+            //切换子集
+            var _siblings = $(this).siblings('ul').toggleClass('hide').parent().siblings();
+            //同时 关闭 兄弟级的其他子集
+//            $(_siblings).children('ul').toggleClass('hide');
+
+        });
+    });
+
+
+    //    $(function (){
+    //        var fontSize=parseInt($('.safa-tree').css('font-size'))
+    //
+    //        $('.safa-tree')
+    //        // 点击到展开的按钮上
+    //            .on('click','.safa-tree-node.on>a',function (e){
+    //                var li=$(this).parent()
+    //                li.removeClass('on')
+    //                boxClearHeight(li)
+    //            })
+    //            // 点击到没展开的按钮上
+    //            .on('click','.safa-tree-node:not(.on)>a',function (e){
+    //
+    //                var li=$(this).parent()
+    //                var ul=$(this).next()
+    //
+    //                // 有点开的按钮的话先折叠展开的按钮
+    //                var open=li.siblings('.on')
+    //                if(open.length){
+    //                    open.removeClass('on')
+    //                    boxClearHeight(open)
+    //                }
+    //
+    //                if(ul.length){
+    //                    li.addClass('on')
+    //                    boxAddHeight(li,ul.prop('offsetHeight'))
+    //                }
+    //            })
+    //
+    //        function boxAddHeight(the,ulHeight){
+    //            the.css('height',the.prop('offsetHeight')+ulHeight+fontSize*1.5)
+    //            the.parents('.safa-tree-node').each(function (){
+    //                $(this).css('height',this.offsetHeight+ulHeight+fontSize*1.5)
+    //            })
+    //        }
+    //
+    //        function boxClearHeight(the){
+    //            var oldHeight=the.prop('offsetHeight')
+    //            the.css('height','')
+    //
+    //            the.parents('.safa-tree-node').each(function (){
+    //                $(this).css('height','-='+(oldHeight-the.prop('offsetHeight')))
+    //            })
+    //        }
+    //    })
+</script>
+
+</body>
+</html>

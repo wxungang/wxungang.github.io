@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>类型传递 created by xiaogang on 2017/10/19</title>
+    <link type="text/css" rel="stylesheet" href="类型传递.css"/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header>类型传递</header>
+<pre>
+函数内的形参只是预定义的局部变量（变量声明）！
+当函数调用时，即相当于变量赋值。所以  引用类型 的修改会影响到外部的变量！
+所以当在函数内部重新给变量赋值时，相当于改变变量的（引用）指向！
+</pre>
+</body>
+<script type="text/javascript">
+
+    (() => {
+        console.log('------ demo --------');
+
+
+        function demo(num, obj, arr) {
+            num++;
+            obj.props = 'newProps';
+            arr.push('new value');
+
+
+            console.log(num);
+            console.log(obj);
+            console.log(arr);
+        }
+
+        var num = 0, obj = {props: 1}, arr = ['1'];
+        demo(num, obj, arr)
+
+        console.log('------outputs--------');
+        console.log(num);
+        console.log(obj);
+        console.log(arr);
+    })();
+
+
+    (() => {
+        console.log('------ demo --------');
+
+        function demo(num, obj, arr) {
+            num++;
+            obj.props = 'newProps';
+            arr.push('new value');
+
+            obj={
+                props:'new obj'
+            };
+            arr=['new arr'];
+
+            console.log(num);
+            console.log(obj);
+            console.log(arr);
+        }
+
+        var num = 0, obj = {props: 1}, arr = ['1'];
+        demo(num, obj, arr)
+
+        console.log('------outputs 2--------');
+        console.log(num);
+        console.log(obj);
+        console.log(arr);
+    })();
+
+</script>
+</html>

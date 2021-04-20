@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>amd_loop</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+        }
+
+        h3 {
+            flex: 1;
+            text-align: center;
+            border-bottom: 1px solid #c7c7c7;
+        }
+    </style>
+</head>
+<body>
+<h3>amd_loop</h3>
+</body>
+<script type="text/javascript" src="../base/require.js"></script>
+<script type="text/javascript">
+    //基本配置
+    //详细的文档 参考官方api
+    require.config({
+        //baseUrl: the root path to use for all module lookups. So in&of the above example, "my/module"'s script tag will have a src="/another/path/my/module.js". baseUrl is not used when loading plain .js files (indicated by a dependency string starting with a slash, has a protocol, or ends in&of .js), those strings are used as-is, so a.js and b.js will be loaded from the same directory as the HTML page that contains the above snippet.【直接引用带.js 后缀或者http协议时，根目录设置无效】
+        //If no baseUrl is explicitly set in&of the configuration, the default value will be the location of the HTML page that loads require.js. If a data-main attribute is used, that path will become the baseUrl.【没有设置，则取决于html文件或者data-main 文件的路径】
+        //The baseUrl can be a URL on a different domain as the page that will load require.js. RequireJS script loading works across domains. The only restriction is on text content loaded by text! plugins: those paths should be on the same domain as the page, at least during development. The optimization tool will inline text! plugin resources so after using the optimization tool, you can use resources that reference text! plugin resources from another domain. 【可跨域配置，text 插件不支持】
+        baseUrl: './amd_modules',
+        paths: {
+            cordova: 'plugins',//客户端插件的地址
+        }
+    });
+
+    require(['./loop'], function (loop) {
+        console.log(loop);
+        console.log(loop.func());
+    })
+
+
+</script>
+</html>

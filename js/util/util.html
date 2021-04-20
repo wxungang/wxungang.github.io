@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>util</title>
+</head>
+<body>
+<header>util</header>
+</body>
+<script type="text/javascript" src="./util.js"></script>
+<script type="text/javascript" src="./util.time.js"></script>
+
+<script type="text/javascript">
+    //util.time
+    (() => {
+        const time = new Date();
+        let formatTime = util.fmtFullYMDHMS(time.getTime());
+        console.log(formatTime);
+
+        function test() {
+            let imgUrl = "styyy.s..json";
+
+            return imgUrl += /\.s?json$/.test(imgUrl) ? '' : '.json';
+        }
+
+     // console.log(test());
+
+
+        console.log((new Date()).Format("yyyyMMdd"));
+
+    })()
+</script>
+
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>word_break created by xiaogang on 2017/9/22</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        pre {
+            overflow: scroll;
+            padding: 5px 20px;
+        }
+
+        P {
+            margin-bottom: 10px;
+        }
+
+        .break_all {
+            word-break: break-all;
+
+        }
+
+        .break_word {
+            word-wrap: break-word;
+            /*最新 规范已经改成  overflow-wrap*/
+            overflow-wrap: break-word;
+        }
+
+    </style>
+</head>
+<body>
+<p class="break_all">this is long words: frontWebDeveloper frontWebDeveloper frontWebDeveloper frontWebDeveloper
+    frontWebDeveloper</p>
+<p class="break_word">this is long words: frontWebDeveloper frontWebDeveloper frontWebDeveloper frontWebDeveloper
+    frontWebDeveloper</p>
+<p class="break_word">this is long words:
+    frontWebDeveloper_frontWebDeveloper_frontWebDeveloper_frontWebDeveloper_frontWebDeveloper</p>
+<pre>
+//break_all: 将任何单词切断成单一字母展示
+.break_all{
+    word-break: break-all;
+}
+
+//break_word : 只在某一个单词超过一行时 才强制切断该单词进行换行展示
+.break_word{
+    word-wrap: break-word;
+    /*最新 规范已经改成  overflow-wrap*/
+    overflow-wrap: break-word;
+}
+</pre>
+</body>
+<script type="text/javascript"></script>
+</html>

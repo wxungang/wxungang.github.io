@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px;">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <title>iframe created by xiaogang on 2017/10/27</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            line-height: 1rem;
+        }
+
+        .v-iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        body, .vue-content, .up-page {
+            width: 100%;
+            height: 100%;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 800px;
+        }
+    </style>
+</head>
+<html>
+<header>iframe</header>
+<iframe src="./wrap.html"></iframe>
+</body>
+<script type="text/javascript">
+    var _meta = document.createElement('meta');
+    _meta.setAttribute('name','viewport');
+//    _meta.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+    _meta.removeAttribute('name');
+    document.getElementsByTagName('head')[0].appendChild(_meta);
+
+//    document.getElementsByTagName('meta')[0].removeChild(document.getElementsByTagName('meta')[1])
+//    _meta.setAttribute('name','viewport');
+    _meta.removeAttribute('name');
+    //    _meta.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+</script>
+</html>

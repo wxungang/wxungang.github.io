@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ajax created by xiaogang on 2017/11/30</title>
+    <!--<link type="text/css" rel="stylesheet" href="ajax.css"/>-->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+<header>ajax</header>
+
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript">
+  $(function () {
+
+    $.ajax({
+      url: 'http://172.18.60.15:1111/coupon/getCouponDetailInfo.json',
+//      url: 'http://172.18.28.135:1104/user/login',
+//      url: 'http://172.18.28.135:1104/coupon/getCouponDetailInfo.json',
+      type: 'post',
+      data: {
+        couponNo: '1qaz2wsx'
+      },
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+
+  });
+</script>
+</html>

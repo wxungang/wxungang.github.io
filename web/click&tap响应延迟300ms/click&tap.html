@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <title>click&tap</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid #c7c7c7;
+        }
+    </style>
+</head>
+<body>
+<h3 id="h3">click me</h3>
+<div id="output">
+
+</div>
+</body>
+<script type="text/javascript" src="../../common/zepto.js"></script>
+<script type="text/javascript" src="../../common/touch.js"></script>
+<script type="text/javascript">
+    // click 事件延迟问题
+    document.getElementById('h3').addEventListener('click', function (e) {
+        console.log("=========click1======")
+        console.log(new Date().getTime());
+    });
+
+    $("#h3").on('tap', function (e) {
+        console.log("=========zepto tap1======")
+        console.log(new Date().getTime());
+    });
+
+    document.getElementById('h3').addEventListener('click', function (e) {
+        console.log("=========click2======")
+        console.log(new Date().getTime());
+    });
+
+    $("#h3").on('tap', function (e) {
+        console.log("=========zepto tap2======")
+        console.log(new Date().getTime());
+    });
+
+    document.getElementById('h3').addEventListener('touchend', function (e) {
+        console.log("=========touchend======")
+        console.log(new Date().getTime());
+    });
+
+    document.getElementById('h3').addEventListener('touchstart', function (e) {
+        console.log("=========touchstart======")
+        console.log(new Date().getTime());
+    });
+
+    document.getElementById('h3').addEventListener('mousedown', function (e) {
+        console.log("=========mousedown======")
+        console.log(new Date().getTime());
+    });
+    document.getElementById('h3').addEventListener('mouseup', function (e) {
+        console.log("=========mouseup======")
+        console.log(new Date().getTime());
+    });
+
+    window.console.log = function (str) {
+        $("#output").append('<p>' + str + '</p>');
+    }
+</script>
+</html>

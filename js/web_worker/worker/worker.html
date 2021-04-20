@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>worker</title>
+</head>
+<body>
+<header> worker</header>
+</body>
+<script type="text/javascript">
+    var worker = new Worker('./work.js');
+
+    //给worker传递数据
+    worker.postMessage({
+        data: {
+            key: 'worker'
+        }
+    });
+
+    worker.onerror = function (e) {
+        console.log(e);
+    };
+    //worker  回调处理
+    worker.onmessage = function (e) {
+        console.log(e);
+    };
+
+</script>
+</html>
