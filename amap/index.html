@@ -73,12 +73,19 @@
         marker = new AMap.Marker({
             icon: "https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
             position: [116.406315,39.908775],
-            offset: new AMap.Pixel(-13, -30)
+            offset: new AMap.Pixel(-13, -30),
+            clickable: true
         });
       
-        console.log(marker,map)
+        console.log(marker,map,marker.getClickable())
+
+        marker.setClickable(true);
 
         marker.on("touchstart", ()=>{
+            console.log('====amap touchstart====')
+        });
+
+        marker.on("click", ()=>{
             console.log('====amap click====')
         });
 
