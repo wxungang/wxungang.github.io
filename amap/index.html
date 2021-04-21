@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+<header>
+    dom 操作
+</header>
+<div id="container" style="width:500px; height:300px"></div>
+</body>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=75babffa83a077cca01669665f35bb5c"></script>
+<script type="text/javascript">
+const map = new AMap.Map('container');
+
+const marker = new AMap.Marker({
+    position: new AMap.LngLat(116.39,39.9),
+    offset: new AMap.Pixel(-10, -10),
+    icon: 'https://common.cnblogs.com/images/wechat.png', // 添加 Icon 图标 URL
+    title: '北京'
+});
+
+marker.setLabel({
+  
+  offset: new AMap.Pixel(15, 15),
+  content: `mapData[i].merchantName`
+});
+
+
+marker.on("click", ()=>{
+    console.log('====amap click====')
+});
+
+map.add(marker);
+</script>
+</html>
