@@ -25,9 +25,11 @@ console.log(
   createElement(LikeButton),
   createElement('button', { onClick: () => {} }, 'Like')
 );
-const domContainer = document.querySelector('#class_button_container');
-ReactDOM.render(createElement(LikeButton), domContainer);
 
+ReactDOM.render(
+  createElement(LikeButton),
+  document.getElementById('class_button_container')
+);
 
 function reactButton() {
   const [liked, updateLiked] = React.useState(false);
@@ -36,10 +38,15 @@ function reactButton() {
     return 'You liked this.(function)';
   }
 
-  return createElement('button', { onClick: () => updateLiked(true) }, 'Like(function)');
+  return createElement(
+    'button',
+    { onClick: () => updateLiked(true) },
+    'Like(function)'
+  );
 }
 
 ReactDOM.render(
   createElement(reactButton),
   document.getElementById('function_button_container')
 );
+

@@ -21,19 +21,6 @@
       "skipFiles": ["node_modules/**"],
       // "program": "${workspaceFolder}\\debug.js"  //默认生成的指向文件的地址
       "program": "${file}" //表示此时打开的文件
-    },
-    {
-      "name": "Launch Chrome",
-      "request": "launch",
-      "type": "pwa-chrome",
-      "file": "${workspaceFolder}/react/demo/react.html"
-    },
-    {
-      "type": "pwa-chrome",
-      "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://localhost:8080/react/demo/react.html",
-      "webRoot": "${workspaceFolder}"
     }
   ]
 }

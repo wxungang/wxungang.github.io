@@ -35,11 +35,17 @@
 
     <script type="text/babel">
       function reactJsxButton() {
-        return <button onClick={(e) => e}>like(jsx)</button>;
+        const [liked, updateLiked] = React.useState(false);
+
+        if (liked) {
+          return <button>'You liked this.(jsx)'</button>;
+        }
+
+        return <button onClick={() => updateLiked(true)}>like(jsx)</button>;
       }
 
       ReactDOM.render(
-        reactJsxButton(),
+        React.createElement(reactJsxButton),
         document.getElementById('jsx_button_container')
       );
     </script>
