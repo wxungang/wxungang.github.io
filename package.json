@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "pretty": "pretty-quick",
-    "check": "echo 'check' && npx eslint src/",
+    "check": "echo 'check'",
     "test": "jest"
   },
   "devDependencies": {
