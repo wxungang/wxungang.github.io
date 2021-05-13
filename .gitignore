@@ -1,6 +1,6 @@
 .idea/
 ./lodash/lodash-4.17.19
-
+node_modules/
 
 # cache file created by deepcode plugin 
 .dccache

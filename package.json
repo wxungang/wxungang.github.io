@@ -1,0 +1,29 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "pretty": "pretty-quick",
+    "check": "echo 'check' && npx eslint src/",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "husky": "latest",
+    "prettier": "latest",
+    "pretty-quick": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "eslint": "latest",
+    "eslint-plugin-flowtype": "latest",
+    "eslint-plugin-react": "latest",
+    "jest": "latest",
+    "flow-bin": "latest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check && pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
