@@ -1,49 +1,31 @@
 import React, { Component } from 'react';
-import UseStateHooks from './hooks/useState';
+
+import ReactClass from './class/reactClass';
+import ReactHooks from './hooks/reactHooks';
+
+const displayName = 'app';
+
 class app extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hooksShow: true,
-      hooks: {
-        number: 1,
-        obj: {
-          a: 1
-        },
-        arr: [1]
-      }
+      reactClass: true,
+      reactHooks: false
     };
   }
 
+  static displayName = displayName;
+
   componentDidMount() {
-    setTimeout(() => {
-      this.updateState();
-    }, 3000);
+    console.log(`componentDidMount====> ${displayName} `);
   }
 
-  updateState = () => {
-    this.setState((preState) => ({
-      hooks: {
-        ...preState.hooks,
-        number: preState.hooks.number + 1,
-        obj: {
-          ...preState.hooks.obj,
-          b: 2
-        },
-        arr: preState.hooks.arr.concat(3)
-      }
-    }));
-  };
-
   render() {
+    console.log(`render======>${displayName}`, JSON.stringify(this.props), JSON.stringify(this.state));
     return (
       <div className="App" style={{ margin: '20px 5px' }}>
-        <div>
-          <button onClick={() => this.setState({ hooksShow: !this.state.hooksShow })}>toggle useState demo</button>
-          {this.state.hooksShow && (
-            <UseStateHooks number={this.state.hooks.number} obj={this.state.hooks.obj} arr={this.state.hooks.arr} />
-          )}
-        </div>
+        {this.state.reactClass && <ReactClass />}
+        {this.state.reactHooks && <ReactHooks />}
       </div>
     );
   }
